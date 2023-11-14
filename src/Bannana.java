@@ -8,8 +8,7 @@ public class Bannana extends Produce {
         super(name, health);
     }
 
-    public attack(int attack_power, Produce opponent )
-
-    }
+//    public attack(int attack_power, Produce opponent ){
+//    }
 
 }
