@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
         String border = "-----------------------------------\n";
 
-        Carrot Carrot1 = new Carrot("Mike", 100);
-        Carrot Carrot2 = new Carrot("Micah", 80);
-        Carrot Carrot3 = new Carrot("Niko", 90);
+        Carrot Carrot1 = new Carrot("Mike", 50);
+        Carrot Carrot2 = new Carrot("Micah", 50);
+        Carrot Carrot3 = new Carrot("Niko", 50);
 
         // Creating our array list to hold all of our produce
         ArrayList<Produce> Produce_Object_List = new ArrayList<>();
