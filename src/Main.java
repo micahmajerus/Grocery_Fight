@@ -2,64 +2,86 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
-
 public class Main {
     public static void main(String[] args) {
         String border = "-----------------------------------\n";
 
+        // Creating our produce objects
         Carrot Carrot1 = new Carrot("Mike", 50);
         Carrot Carrot2 = new Carrot("Micah", 50);
-        Carrot Carrot3 = new Carrot("Niko", 50);
+        Banana Banana1 = new Banana("Claire", 40);
+        Banana Banana2 = new Banana("Jacob", 40);
+        Apple Apple1 = new Apple("Sam", 30);
+        Apple Apple2 = new Apple("Luke", 30);
 
         // Creating our array list to hold all of our produce
         ArrayList<Produce> Produce_Object_List = new ArrayList<>();
         Produce_Object_List.add(Carrot1);
         Produce_Object_List.add(Carrot2);
-        Produce_Object_List.add(Carrot3);
+        Produce_Object_List.add(Banana1);
+        Produce_Object_List.add(Banana2);
+        Produce_Object_List.add(Apple1);
+        Produce_Object_List.add(Apple2);
 
+        // Initialize a variable to store the result of the battle
         Produce resultObject = null;
-        while (Produce_Object_List.stream().filter(obj -> obj.getHealth() > 0).count() > 1) {
-            for (Produce obj : Produce_Object_List) {
-                if (obj.getHealth() > 0) {
-                    if (resultObject == null) {
 
+        // This loop continues executing as long as there are
+        // at least two objects in Produce_Object_List with health greater than 0
+        while (Produce_Object_List.stream().filter(obj -> obj.getHealth() > 0).count() > 1) {
+
+            // Iterate over each object in the arraylist
+            for (Produce obj : Produce_Object_List) {
+
+                // Checking if the produce object has health greater than zero
+                if (obj.getHealth() > 0) {
+
+                    // If resultObject is null, assign the current object to it
+                    if (resultObject == null) {
                         resultObject = obj;
                     } else {
+                        // Initialize variables for two produce objects to battle
                         Random random = new Random();
                         Produce Object1 = null;
                         Produce Object2 = null;
-                        // ------------Choosing the next produce to battle----------------------------------------------------------------
+
+                        // Choosing the next produce to battle
                         while (Object1 == null || Object2 == null) {
                             int randomIndex = random.nextInt(Produce_Object_List.size());
                             Produce selectedObject = Produce_Object_List.get(randomIndex);
 
+                            // Check if the selected object has health greater than zero
                             if (selectedObject.getHealth() > 0) {
+                                // If Object1 is null, assign the selected object to it
                                 if (Object1 == null) {
                                     Object1 = selectedObject;
-                                } else if (Object2 == null && !selectedObject.equals(Object1)) {
+                                }
+                                // If Object2 is null and the selected object is different from Object1, assign it to Object2
+                                else if (Object2 == null && !selectedObject.equals(Object1)) {
                                     Object2 = selectedObject;
                                 }
                             }
                         }
-                        System.out.println(border + "Up next is, " + Object1.getName() + " VS. " + Object2.getName() + "!");
+
+                        // Display the upcoming battle
+                        System.out.println("Up next is, " + Object1.getName() + " VS. " + Object2.getName() + "!");
+
                         // ------------Battle (Including user choose)-----------------------
+
                         // Doing Object1 actions
                         int userChoice1 = getUserChoice(Object1);
                         perform_chosen_action(userChoice1, Object1, Object2);
 
-                        // Doing tObject2 actions
+                        // Doing Object2 actions
                         int userChoice2 = getUserChoice(Object2);
                         perform_chosen_action(userChoice2, Object2, Object1);
 
-
-                        // ----------Display results-----------------------------------------
-                        System.out.println("\n" + Object1.getName() + " now has " + Object1.getHealth() + " health points, and "
+                        // Display results
+                        System.out.println(Object1.getName() + " now has " + Object1.getHealth() + " health points, and "
                                 + Object2.getName() + " now has " + Object2.getHealth() + " health points");
 
-                        // Both objects have health greater than 0, so the loop continues
-
+                        // Reset the resultObject to null for the next iteration
                         resultObject = null;
-
                     }
                 }
             }
@@ -71,9 +93,6 @@ public class Main {
                 System.out.println(border + border + "The winner is " + obj.getName() + "! \n" + border  + border);
             }
         }
-        System.out.println(Carrot1.getName() + " ended with " + Carrot1.getHealth());
-        System.out.println(Carrot2.getName() + " ended with " + Carrot2.getHealth());
-        System.out.println(Carrot3.getName() + " ended with " + Carrot3.getHealth());
 
     } // End of main
 

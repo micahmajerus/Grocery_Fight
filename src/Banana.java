@@ -1,28 +1,30 @@
-public class Apple extends Produce{
+public class Banana extends Produce {
 
-    int attack_power = 6;
+    int attack_power = 5;
 
     /**
      * Constructor
      * @param name
      * @param health
      */
-    Apple(String name, int health) {
+    Banana(String name, int health) {
         super(name, health);
     }
 
     /**
-     * This ability gives the apple plus 15 health
+     * Ths ability gives the carrot the ability to gain insight on it;s
+     * opponents by learning their name and health points
      * @param opponent - Produce
      */
     @Override
     public void special_move(Produce opponent, Produce player){
-        System.out.println("An appple a day keeps the doctor away! Plus 15 health!");
-        player.setHealth(player.getHealth() + 15);
+        System.out.println("Banana Slip: You lose 5 health, your opponent loses 15 health!");
+        player.setHealth(player.getHealth() - 5);
+        opponent.setHealth(opponent.getHealth() - 15);
     }
 
     /**
-     * This method is the attack method for Apples
+     * The attack method for Banana
      * @param opponent - The enemy produce
      */
     @Override
@@ -30,4 +32,5 @@ public class Apple extends Produce{
         opponent.health = opponent.health - attack_power;
         System.out.println(opponent.getName() + " has lost " + attack_power + "!");
     }
+
 }
